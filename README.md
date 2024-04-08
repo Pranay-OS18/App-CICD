@@ -1,4 +1,6 @@
-Complete CI/CD pipeline starting from fetching code to deploy it on kubernetes. The pipeline uses 
+Complete CI/CD pipeline starting from fetching code to deploy it on kubernetes. After a successful build, notification is sent using Slack Notification Plugin.
+
+The pipeline uses 
 Git,
 Jenkins,
 Maven,
