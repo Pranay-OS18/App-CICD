@@ -60,20 +60,34 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'Docker-Cred', url: '') {
-                        sh 'docker build -t pranay18cr/jvm-image:latest .'
+                        sh 'docker build -t pranay18cr/jvm-image:v1 .'
                     }
                 }
             }
         }
         stage('Image Scan') {
             steps {
-                sh 'trivy image --format table -o scan-image-report.html pranay18cr/jvm-image:latest'
+                sh 'trivy image --format table -o scan-image-report.html pranay18cr/jvm-image:v1'
             }
         }
         stage('Push Image To Docker Hub') {
             steps {
                 withDockerRegistry(credentialsId: 'Docker-Cred', url: '') {
-                        sh 'docker push pranay18cr/jvm-image:latest'
+                        sh 'docker push pranay18cr/jvm-image:v1'
+                }
+            }
+        }
+        stage('Deploy to Kubernetes') {
+            steps {
+                withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'K8s-Cred', namespace: 'jvm-group', restrictKubeConfigAccess: false, serverUrl: 'https://10.0.1.49:6443') {
+                    sh 'kubectl create -f deployment.yaml'
+                }
+            }
+        }
+        stage('ChecVerifyking Deployment') {
+            steps {
+                withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'K8s-Cred', namespace: 'jvm-group', restrictKubeConfigAccess: false, serverUrl: 'https://10.0.1.49:6443') {
+                    sh 'kubectl get pods -n jvm-group'
                 }
             }
         }
