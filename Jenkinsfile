@@ -1,3 +1,7 @@
+def COLOR_MAP = [
+    'SUCCESS': 'good',
+    'FAILURE': 'danger',
+]
 pipeline {
     agent any
 
@@ -90,6 +94,14 @@ pipeline {
                     sh 'kubectl get pods -n jvm-group'
                 }
             }
+        }
+    }
+    post {
+        always {
+            echo 'Slack Notify'
+            slackSend channel: '#jenkinscicd',
+                 color: COLOR_MAP[currentBuild.currentResult],
+                 message: "Build Successful"
         }
     }
 }    
