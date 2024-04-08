@@ -84,7 +84,7 @@ pipeline {
                 }
             }
         }
-        stage('ChecVerifyking Deployment') {
+        stage('Check Deployment') {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'K8s-Cred', namespace: 'jvm-group', restrictKubeConfigAccess: false, serverUrl: 'https://10.0.1.49:6443') {
                     sh 'kubectl get pods -n jvm-group'
