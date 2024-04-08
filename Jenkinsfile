@@ -72,7 +72,7 @@ pipeline {
         }
         stage('Push Image To Docker Hub') {
             steps {
-                withDockerRegistry(credentialsId: 'Docker-Cred', toolName: 'Docker')  {
+                withDockerRegistry(credentialsId: 'Docker-Cred')  {
                         sh 'docker push pranay18cr/jvm-image:latest'
                 }
             }
