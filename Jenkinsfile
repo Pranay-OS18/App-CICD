@@ -59,7 +59,7 @@ pipeline {
         stage('Build & Tag Docker Image') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'Docker-Cred', toolName: 'Docker')  {
+                    withDockerRegistry(credentialsId: 'Docker-Cred')  {
                         sh 'docker build -t pranay18cr/jvm-image:latest .'
                     }
                 }
