@@ -73,7 +73,8 @@ pipeline {
             steps {
                 withDockerRegistry(credentialsId: 'Docker-Cred', toolName: 'Docker')  {
                         sh 'docker push pranay18cr/jvm-image:latest'
+                }
             }
         }
     }
-}
+}    
