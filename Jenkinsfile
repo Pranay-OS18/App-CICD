@@ -59,7 +59,7 @@ pipeline {
         stage('Build & Tag Docker Image') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'Docker-Cred')  {
+                    withDockerRegistry(credentialsId: 'Docker-Cred') {
                         sh 'docker build -t pranay18cr/jvm-image:latest .'
                     }
                 }
@@ -72,7 +72,7 @@ pipeline {
         }
         stage('Push Image To Docker Hub') {
             steps {
-                withDockerRegistry(credentialsId: 'Docker-Cred')  {
+                withDockerRegistry(credentialsId: 'Docker-Cred') {
                         sh 'docker push pranay18cr/jvm-image:latest'
                 }
             }
