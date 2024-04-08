@@ -1,6 +1,15 @@
-Board Game Database Full-Stack Web Application. 
-This web application displays lists of board games and their reviews.
-JDBC for database connectivity and interaction
-H2 Database Engine (In-memory)
-CRUD (Create, Read, Update, Delete) operations for managing data in the database
-Schema.sql file to customize the schema and input initial data
+Complete CI/CD pipeline starting from fetching code to deploy it on kubernetes. The pipeline uses 
+Git,
+Jenkins,
+Maven,
+Docker,
+SonarQube,
+Trivy,
+Nexus,
+Kubernetes and continuous monitoring is setup using Prometheus and Grafana.
+
+
+Board Game Database Full-Stack Web Application displays lists of board games and their reviews.Application uses H2 Database Engine (In-memory) and JDBC for database connectivity and interaction.
+
+
+
